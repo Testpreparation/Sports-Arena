@@ -75,102 +75,42 @@ body.fxi #hud{visibility:hidden}
 #otConf{position:absolute;inset:0}#otConf i{position:absolute;top:-5%;width:9px;height:16px;opacity:.9;animation:fall linear infinite}@keyframes fall{to{transform:translateY(115vh) rotate(720deg)}}
 
 
-/* BADMINTON ARENA PRO v7 — Premium Light adaptation for existing Sports Arena screens.
-   Visual-only: preserve all existing markup, event handlers, game logic, camera and 3D assets. */
-:root{
- --bg:#060b13;--card:#fff;--card2:#f0f4f9;--tx:#13263d;--dim:#5f7389;
- --ac:#b08a34;--ac2:#d9b86c;--ln:rgba(19,38,61,.16);
- --iv:#13263d;--gold:#b08a34;--gold2:#d9b86c;--mu:#5f7389;
- --pro-shadow:0 28px 65px -28px rgba(0,0,0,.72);
- color-scheme:dark;
+
+/* BADMINTON ARENA UI COMPONENT LIBRARY — PRO v7 HUD adaptation.
+   Keep existing Sports Arena ids/event handlers; visual structure follows library HUD. */
+:root{--bg0:#060b13;--bg1:#0c1727;--bg2:#13233a;--gold:#b08a34;--gold2:#d9b86c;--gold3:#8a6d2f;--iv:#13263d;--lt:#fff;--mu:#5f7389;--hl:rgba(19,38,61,.16);--cr:#e8523a;--ok:#169a62;--ease:cubic-bezier(.2,.7,.2,1);--fd:"Barlow Condensed","Noto Sans JP",sans-serif;--fb:"Noto Sans JP","Barlow Condensed",system-ui,"Hiragino Sans","Yu Gothic",sans-serif}
+html,body{font-family:var(--fb);-webkit-font-smoothing:antialiased}
+#hud{pointer-events:none;flex-direction:column;align-items:center;text-align:center}
+#gtop{position:relative;align-self:center;display:grid;grid-template-columns:minmax(150px,1fr) minmax(68px,auto) minmax(150px,1fr);align-items:stretch;width:max-content;min-width:min(94vw,360px);margin:calc(env(safe-area-inset-top,0px) + 10px) auto 0;padding:0!important;overflow:hidden;background:rgba(6,11,19,.92)!important;border:0!important;border-radius:3px!important;box-shadow:inset 0 0 0 1px var(--hl),0 12px 22px -10px #000;font-variant-numeric:tabular-nums;text-align:left;backdrop-filter:blur(12px);animation:badHudIn .5s both}
+#gtop>div:not(.mid){display:grid;grid-template-columns:1fr auto;grid-template-rows:auto auto;align-items:center;gap:1px 10px;padding:7px 12px!important;background:transparent!important;color:#fff!important;font-size:16px!important;border-radius:0!important;border-left:3px solid var(--gold2)}
+#gtop>div:not(.mid):last-child{border-left-color:var(--cr)}
+#gtop .n{grid-column:1;grid-row:1;color:#aab8c9!important;font-size:9px!important;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+#gtop .s{grid-column:2;grid-row:1 / span 2;min-width:38px;color:#fff!important;font-family:var(--fd);font-size:clamp(28px,5vh,36px)!important;font-weight:700;line-height:1;font-variant-numeric:tabular-nums;text-align:center}
+#gtop #sv0,#gtop #sv1{grid-column:1;grid-row:2;color:var(--gold2)!important;font-size:10px;line-height:1}
+#gtop .mid{display:flex;align-items:center;justify-content:center;min-width:68px;padding:6px 9px!important;background:rgba(255,255,255,.04)!important;color:#aab8c9!important;font-size:10px;font-weight:800;letter-spacing:.1em;text-align:center;text-transform:uppercase;border-inline:1px solid rgba(255,255,255,.07)}
+#msg{position:absolute;left:0;right:0;top:38%;background:none!important;-webkit-text-fill-color:#fff;color:#fff!important;font-family:var(--fd);font-style:italic;font-weight:700;letter-spacing:.08em;font-size:clamp(38px,8.5vw,68px)!important;text-shadow:0 4px 20px rgba(0,0,0,.7)!important;animation:badHudSlam .7s var(--ease) both}
+#msg::after{content:"";display:block;width:120px;height:2px;margin:4px auto 0;background:var(--gold2);transform:skewX(-20deg)}
+#hint{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 8px);color:#aab8c9!important;font-size:11px;letter-spacing:.04em;text-shadow:0 1px 3px #000}
+#bPause{pointer-events:auto;background:rgba(6,11,19,.9)!important;color:#fff!important;border:1px solid rgba(217,184,108,.5)!important;border-radius:3px!important;box-shadow:0 8px 22px rgba(0,0,0,.3)!important}
+#stick{background:rgba(6,11,19,.28)!important;border:1px solid rgba(244,239,227,.55)!important;box-shadow:inset 0 0 0 6px rgba(244,239,227,.05)}
+#knob{background:rgba(244,239,227,.65)!important;border:1px solid rgba(255,255,255,.7)}
+.ab{background:linear-gradient(180deg,#ff8f70,#f0502f 55%,#d93e20)!important;color:#fff!important;border:1px solid rgba(255,255,255,.5)!important;border-radius:3px!important;text-shadow:0 1px 0 rgba(90,20,8,.5);box-shadow:0 0 0 1px #a82f16,inset 0 1px 0 rgba(255,255,255,.55),0 10px 18px -8px rgba(120,30,10,.55)!important}
+#bPow{background:linear-gradient(180deg,#fff,#e8edf2)!important;color:#13263d!important;text-shadow:none}
+#pause,#over{background:rgba(5,12,24,.82)}
+#pause .panel,#over .panel{background:linear-gradient(180deg,#fff,#f0f4f9)!important;color:#13263d!important;border-radius:4px!important;border:0!important;box-shadow:inset 0 0 0 1px var(--hl),0 34px 60px -22px rgba(6,24,52,.55)!important}
+#pause .panel h2,#over .panel h2,#ovT{color:#13263d!important}
+#ovS{color:var(--gold3)!important}
+#pause button,#over button{background:linear-gradient(180deg,#ff8f70,#f0502f 55%,#d93e20)!important;color:#fff!important;border-radius:3px!important;letter-spacing:.08em;box-shadow:0 0 0 1px #a82f16,inset 0 1px 0 rgba(255,255,255,.55)!important}
+@keyframes badHudIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes badHudSlam{0%{opacity:0;transform:scale(1.5) skewX(-8deg)}22%{opacity:1;transform:scale(.98) skewX(-8deg)}36%,100%{opacity:1;transform:scale(1) skewX(-8deg)}}
+@media(max-width:600px){
+ #gtop{grid-template-columns:minmax(100px,1fr) 54px minmax(100px,1fr);min-width:min(96vw,360px)}
+ #gtop>div:not(.mid){padding:7px 8px!important;gap:1px 6px}
+ #gtop .s{font-size:29px!important;min-width:30px}
+ #gtop .mid{min-width:54px;padding:5px!important;font-size:9px}
+ #hint{font-size:10px;max-width:90vw;margin:auto}
 }
-html,body{font-family:"Noto Sans JP","Barlow Condensed",system-ui,"Hiragino Sans","Yu Gothic",sans-serif}
-body{background:#060b13}
-#c{z-index:0}
-.scr{isolation:isolate}
-.scr:not(#hud):not(#over):not(#pause):not(#intro):not(#outro){
- background:radial-gradient(ellipse at 50% 42%,rgba(14,36,61,.24),rgba(4,9,16,.72));
-}
-.title{left:max(5vw,22px);top:max(6vh,28px);max-width:min(52vw,700px)}
-.title:after{content:"";display:block;width:clamp(72px,10vw,132px);height:3px;margin-top:18px;background:linear-gradient(90deg,#b08a34,#d9b86c,transparent)}
-.title h1{font-family:"Barlow Condensed","Noto Sans JP",sans-serif;font-size:clamp(36px,7vw,86px);line-height:.96;font-style:normal;font-weight:900;letter-spacing:.025em;color:#fff;text-shadow:0 5px 30px rgba(0,0,0,.55)}
-.title h1 span{color:#d9b86c}
-.title p{margin-top:14px;max-width:48ch;color:#e3eaf2;font-size:clamp(10px,1.25vw,13px);font-weight:600;letter-spacing:.18em;line-height:1.9;text-shadow:0 2px 12px #000}
-.side{width:min(38vw,390px);margin-right:max(7vw,28px);gap:14px}
-.big{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;min-height:82px;gap:16px;padding:20px 22px;border-radius:4px;border:0;background:linear-gradient(180deg,#fff,#edf2f7);color:#13263d;font-weight:800;letter-spacing:.025em;box-shadow:inset 0 0 0 1px rgba(19,38,61,.12),0 18px 30px -18px rgba(0,0,0,.7);transition:transform .2s cubic-bezier(.2,.7,.2,1),filter .2s,box-shadow .2s}
-.big:before{content:"";position:absolute;z-index:-1;left:0;top:0;bottom:0;width:4px;background:linear-gradient(#b08a34,#d9b86c)}
-.big:after{content:"↗";margin-left:auto;color:#b08a34;font-size:22px;font-weight:500}
-.big:hover{filter:brightness(1.035);transform:translateY(-2px);box-shadow:inset 0 0 0 1px rgba(176,138,52,.48),0 24px 34px -18px rgba(0,0,0,.8)}
-.big.b2{background:linear-gradient(180deg,#13263d,#0c1727);color:#fff;box-shadow:inset 0 0 0 1px rgba(217,184,108,.42),0 18px 30px -18px rgba(0,0,0,.7)}
-.big.b2:before{background:linear-gradient(#d9b86c,#8a6d2f)}
-.big.b2:after{color:#d9b86c}
-.big small{color:#5f7389;opacity:1;font-size:.48em;font-weight:600;letter-spacing:.05em}
-.big.b2 small{color:#c3d0df}
-.big .ic{display:grid;place-items:center;flex:0 0 44px;width:44px;height:44px;font-size:24px;background:rgba(176,138,52,.12);border:1px solid rgba(176,138,52,.25);border-radius:3px;filter:none}
-.panel{position:relative;gap:16px;width:min(92vw,740px);max-height:calc(100dvh - 28px);padding:clamp(20px,3.2vh,32px);overflow:auto;background:linear-gradient(180deg,#fff,#f0f4f9);color:#13263d;border:0;border-radius:4px;box-shadow:var(--pro-shadow),inset 0 0 0 1px rgba(19,38,61,.12);backdrop-filter:blur(18px);scrollbar-width:thin;scrollbar-color:rgba(19,38,61,.25) transparent}
-.panel:before{content:"";position:absolute;left:24px;right:24px;top:0;height:2px;background:linear-gradient(90deg,transparent,#b08a34,#d9b86c,transparent);pointer-events:none}
-.panel h2{color:#13263d;font-weight:900;letter-spacing:.015em}
-.panel .sub{color:#5f7389}
-.grid{gap:12px}
-.card{position:relative;overflow:hidden;min-height:112px;padding:20px 12px;border:0;border-radius:3px;background:linear-gradient(180deg,#fff,#edf2f7);color:#13263d;box-shadow:inset 0 0 0 1px rgba(19,38,61,.14),0 8px 18px -14px rgba(6,24,52,.55);font-weight:800;transition:transform .2s,border-color .2s,box-shadow .2s}
-.card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:#b08a34;opacity:.7}
-.card:hover{border-color:#b08a34;box-shadow:inset 0 0 0 1px rgba(176,138,52,.55),0 14px 24px -16px rgba(6,24,52,.65);transform:translateY(-2px)}
-.card .ic{color:#b08a34}
-.card small{color:#5f7389}
-.btn{min-height:42px;padding:11px 18px;border-radius:3px;background:#fff;border:1px solid rgba(19,38,61,.2);color:#13263d;font-size:13px;font-weight:800;letter-spacing:.04em;box-shadow:0 5px 12px -10px rgba(6,24,52,.5);transition:transform .18s,background .18s,border-color .18s}
-.btn:hover{border-color:#b08a34}
-.btn.pri{background:linear-gradient(180deg,#d9b86c,#b08a34);color:#111c2a;border:0;box-shadow:0 8px 18px -10px rgba(176,138,52,.8),inset 0 1px 0 rgba(255,255,255,.45)}
-.back{color:#5f7389;font-weight:700;letter-spacing:.03em}
-.back:hover{color:#b08a34}
-input{background:#fff;color:#13263d;border:1px solid rgba(19,38,61,.24);border-radius:3px;box-shadow:inset 0 1px 3px rgba(19,38,61,.06)}
-input:focus{outline:2px solid rgba(176,138,52,.3);border-color:#b08a34}
-.slot{background:#fff;color:#13263d;border:1px solid rgba(19,38,61,.15);border-radius:3px;box-shadow:inset 0 0 0 1px rgba(19,38,61,.025)}
-.slot .dim,.lbl{color:#5f7389}
-.chip{background:#fff;color:#13263d;border:1px solid rgba(19,38,61,.18);border-radius:3px;font-weight:700}
-.chip.sel{background:#13263d;color:#f2dca0;border-color:#b08a34}
-.code{color:#8a6d2f;font-family:"Barlow Condensed",monospace;letter-spacing:.22em}
-#wait{color:#8a6d2f}
-#gtop{border:0;border-radius:3px;background:rgba(255,255,255,.97);color:#13263d;box-shadow:0 12px 30px rgba(0,0,0,.25),inset 0 0 0 1px rgba(19,38,61,.16);backdrop-filter:blur(14px)}
-#gtop div{color:#13263d}
-#gtop .n{color:#5f7389}
-#gtop .s{color:#13263d;font-family:"Barlow Condensed","Noto Sans JP",sans-serif}
-#gtop .mid{background:#13263d;color:#f2dca0}
-#msg{color:#fff;text-shadow:0 4px 18px rgba(0,0,0,.8)}
-#bPause{background:rgba(255,255,255,.96);color:#13263d;border:1px solid rgba(19,38,61,.2);border-radius:3px;box-shadow:0 8px 20px rgba(0,0,0,.2)}
-#stick{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.5)}
-#knob{background:rgba(255,255,255,.72);border-color:#fff}
-.ab{background:linear-gradient(180deg,#d9b86c,#b08a34);color:#13263d;border:2px solid rgba(255,255,255,.72);box-shadow:0 10px 24px rgba(0,0,0,.38)}
-#bPow{background:linear-gradient(180deg,#fff,#e9eff5);color:#13263d}
-#over,#pause{background:rgba(3,9,17,.72);backdrop-filter:blur(8px)}
-#over .panel,#pause .panel{background:linear-gradient(180deg,#fff,#f0f4f9);color:#13263d}
-#ovT{color:#13263d}
-#ovS{color:#8a6d2f}
-#rot{color:#f2f6fa;text-shadow:0 2px 10px #000}
-#intro,#outro{z-index:8}
-#itTitle,#itCount{color:#fff}
-.tEn{font-family:"Barlow Condensed",sans-serif;text-shadow:0 6px 30px rgba(0,0,0,.75)}
-.vsL{background:linear-gradient(90deg,#b08a34,#d9b86c);color:#13263d}
-.vsR{background:linear-gradient(90deg,#13263d,#0c1727);color:#fff}
-.vsM{color:#f2dca0}
-#otB{background:linear-gradient(90deg,#13263d,#b08a34,#d9b86c)}
-#otB span{color:#fff}
-#otS.win{color:#d9b86c}
-@media(max-width:700px){
- .title{left:20px;top: max(4vh,20px);max-width:80vw}
- .title h1{font-size:clamp(34px,10vw,56px)}
- .title p{max-width:75vw;font-size:10px;letter-spacing:.11em}
- .side{width:min(86vw,420px);margin:0 auto 7vh;align-self:flex-end}
- .big{min-height:72px;padding:15px 16px;font-size:clamp(16px,4.5vw,21px)}
- .panel{width:min(94vw,740px);padding:18px;gap:13px}
- .grid{gap:9px}
- .card{min-height:100px;padding:14px 8px}
-}
-@media(orientation:portrait) and (max-width:700px){
- #menu{align-items:stretch}
- .title{top:12vh}
- .side{margin-top:auto;margin-bottom:10vh}
-}
-@media(prefers-reduced-motion:reduce){.big,.card,.btn,.chip,.back,input{transition:none!important}.big:before{display:none}}
+@media(prefers-reduced-motion:reduce){#gtop,#msg{animation:none!important}}
 </style><script>{const D=Date;window.Date=class extends D{getHours(){return 12}getMinutes(){return 0}getSeconds(){return 0}}}</script></head><body>
 <div class="bar" id="top"></div><div class="bar" id="bot"></div><canvas id="c"></canvas>
 <div id="menu" class="scr on"><div class="title"><h1>ARENA <span>SPORTS</span></h1><p>BADMINTON · TENNIS · TABLE TENNIS · VOLLEYBALL</p></div>
@@ -186,8 +126,8 @@ input:focus{outline:2px solid rgba(176,138,52,.3);border-color:#b08a34}
  <div id="hostCfg" style="flex-direction:column;gap:10px"><div><div class="lbl">競技</div><div class="row" id="sportChips"></div></div><div><div class="lbl">試合形式</div><div class="row" id="fmtChips"></div></div></div>
  <div id="guestCfg"><div class="lbl">ホストの設定</div><div class="slot"><b id="gInfo"></b></div></div>
  <div id="wait"></div><button class="btn pri" id="bStart">試合開始</button><button class="back" id="bSim" style="align-self:center"></button></div></div>
-<div id="hud" class="scr"><div id="gtop"><div><div class="n">YOU</div><div class="s" id="s0">0</div><div id="sv0">●</div></div><div class="mid" id="hSport"></div><div><div class="n">CPU</div><div class="s" id="s1">0</div><div id="sv1">●</div></div></div><div id="msg"></div><div id="hint">WASD/矢印: 移動　Space: ショット　Shift: 強打</div>
- <button id="bPause">❚❚</button><div id="ctl"><div id="stick"><div id="knob"></div></div><button class="ab" id="bPow">強打</button><button class="ab" id="bShot">ショット</button></div></div>
+<div id="hud" class="scr"><div id="gtop"><div><div class="n">PLAYER 01</div><div class="s" id="s0">0</div><div id="sv0">●</div></div><div class="mid" id="hSport"></div><div><div class="n">PLAYER 02</div><div class="s" id="s1">0</div><div id="sv1">●</div></div></div><div id="msg"></div><div id="hint">MOVE　/　SHOT　/　POWER</div>
+ <button id="bPause">Ⅱ</button><div id="ctl"><div id="stick"><div id="knob"></div></div><button class="ab" id="bPow">強打</button><button class="ab" id="bShot">ショット</button></div></div>
 <div id="over"><div class="panel"><div id="ovT"></div><div id="ovS"></div><div class="row"><button class="btn pri" id="bAgain">もう一度</button><button class="btn" id="bQuit">戻る</button></div></div></div>
 <div id="pause"><div class="panel"><h2>一時停止</h2><button class="btn pri" id="bResume">再開</button><button class="btn" id="bSnd">🔊 サウンド: ON</button><button class="btn" id="bPQuit">試合を終了</button></div></div>
 <div id="intro" class="fx"><div class="lb lbt"></div><div class="lb lbb"></div><div id="itTitle"></div><div id="itVS"></div><div id="itCount"></div><div id="itFlash"></div></div>
