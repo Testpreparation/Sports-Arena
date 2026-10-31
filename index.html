@@ -164,6 +164,19 @@ html,body{font-family:var(--fb);-webkit-font-smoothing:antialiased}
  #menu .big .ic{font-size:28px}
 }
 
+
+/* Match BADMINTON-ARENA orientation behavior: ask touch devices to rotate to landscape. */
+#rot{position:fixed;inset:0;z-index:1000;display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:24px;background:#0b111a;color:#f1f5f9;font-size:18px;line-height:1.7;text-align:center;box-sizing:border-box}
+#rot i{font-size:60px;font-style:normal;display:block;animation:rotatePhone 1.6s ease-in-out infinite}
+@keyframes rotatePhone{50%{transform:rotate(90deg)}}
+@media(pointer:coarse) and (orientation:portrait){#rot{display:flex}}
+@media(pointer:coarse) and (orientation:landscape) and (max-width:900px){
+ #menu .title h1{font-size:clamp(38px,9vw,80px)}
+ #menu .side{gap:1.5vh}
+ #menu button.big{padding:clamp(8px,1.7vh,16px) clamp(12px,2.5vw,24px);gap:clamp(8px,1.5vw,16px)}
+ #menu .big .ic{font-size:clamp(26px,6vw,48px)}
+}
+
 </style><script>{const D=Date;window.Date=class extends D{getHours(){return 12}getMinutes(){return 0}getSeconds(){return 0}}}</script></head><body>
 <div class="bar" id="top"></div><div class="bar" id="bot"></div><canvas id="c"></canvas>
 <div id="menu" class="scr on"><div class="title"><h1>ARENA <span>SPORTS</span></h1><p>BADMINTON · TENNIS · TABLE TENNIS · VOLLEYBALL</p></div>
@@ -185,7 +198,7 @@ html,body{font-family:var(--fb);-webkit-font-smoothing:antialiased}
 <div id="pause"><div class="panel"><h2>一時停止</h2><button class="btn pri" id="bResume">再開</button><button class="btn" id="bSnd">🔊 サウンド: ON</button><button class="btn" id="bPQuit">試合を終了</button></div></div>
 <div id="intro" class="fx"><div class="lb lbt"></div><div class="lb lbb"></div><div id="itTitle"></div><div id="itVS"></div><div id="itCount"></div><div id="itFlash"></div></div>
 <div id="outro" class="fx"><div id="otConf"></div><div id="otB"></div><div id="otS"></div><div id="otScore"></div></div>
-<div id="rot">横画面でのプレイがおすすめです</div>
+<div id="rot"><i>📱</i>横向きにしてください</div>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script>
