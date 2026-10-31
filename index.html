@@ -300,6 +300,43 @@ html,body{font-family:var(--fb);-webkit-font-smoothing:antialiased}
  #gtop .mid{min-width:0!important;padding:3px 7px!important;font-size:11px!important}
 }
 
+
+/* Match HUD / touch controls: mirror BADMINTON-ARENA's current glass scorecard and touch styling.
+   Sports Arena's IDs and input handlers stay intact; no game or 3D asset logic is changed. */
+#gtop{
+  box-sizing:border-box!important;
+  position:fixed!important;left:env(safe-area-inset-left,0px)!important;top:env(safe-area-inset-top,0px)!important;
+  margin:0!important;padding:10px 12px!important;min-width:174px!important;max-width:min(48vw,250px)!important;
+  display:grid!important;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)!important;gap:4px!important;
+  overflow:hidden;background:linear-gradient(135deg,rgba(235,247,255,.28),rgba(120,170,220,.12))!important;
+  border:1px solid rgba(255,255,255,.38)!important;border-radius:16px!important;
+  -webkit-backdrop-filter:blur(18px) saturate(170%)!important;backdrop-filter:blur(18px) saturate(170%)!important;
+  box-shadow:0 10px 30px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.34),inset 0 -1px 0 rgba(255,255,255,.08)!important;
+  color:rgba(255,255,255,.98)!important;text-shadow:0 1px 5px rgba(0,0,0,.32)!important;font-size:13px!important;line-height:1.25!important;
+}
+#gtop>div:not(.mid){display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;grid-template-rows:auto auto!important;align-items:center!important;gap:2px 5px!important;padding:5px 2px!important;background:transparent!important;border:0!important;color:#fff!important;min-width:0!important}
+#gtop>div:first-child{border-bottom:1px solid rgba(255,255,255,.26)!important}
+#gtop>div:last-child{border-top:1px solid rgba(255,255,255,.26)!important}
+#gtop .n{grid-column:1!important;grid-row:1!important;font-size:9px!important;font-weight:750!important;color:rgba(255,255,255,.9)!important;white-space:nowrap!important;letter-spacing:.04em!important}
+#gtop .s{grid-column:2!important;grid-row:1 / span 2!important;font-size:clamp(23px,4.5vh,34px)!important;font-weight:900!important;line-height:1.05!important;min-width:2ch!important;color:#fff!important}
+#gtop #sv0,#gtop #sv1{grid-column:1!important;grid-row:2!important;font-size:10px!important;color:#fff!important;opacity:.85!important}
+#gtop .mid{grid-column:2!important;grid-row:1 / span 2!important;display:flex!important;align-items:center!important;justify-content:center!important;min-width:34px!important;padding:4px!important;background:rgba(255,255,255,.06)!important;border-inline:1px solid rgba(255,255,255,.2)!important;color:#fff!important;font-size:10px!important;font-weight:800!important;letter-spacing:.04em!important;overflow:hidden!important}
+#msg{position:fixed!important;top:38%!important;left:0!important;right:0!important;font-size:34px!important;font-weight:800!important;letter-spacing:.06em!important;font-style:italic!important;color:#fff!important;-webkit-text-stroke:1px rgba(0,0,0,.4)!important;text-shadow:0 2px 8px #000!important;background:transparent!important}
+#hint{position:fixed!important;left:0!important;right:0!important;bottom:calc(env(safe-area-inset-bottom,0px) + 8px)!important;font-size:12px!important;color:#fff!important;opacity:.8!important;text-shadow:0 1px 5px #000!important}
+#bPause{position:fixed!important;top:calc(env(safe-area-inset-top,0px) + 10px)!important;right:calc(env(safe-area-inset-right,0px) + 12px)!important;width:auto!important;height:auto!important;margin:0!important;padding:8px 12px!important;font-size:14px!important;background:rgba(8,12,18,.7)!important;border:1px solid rgba(255,255,255,.38)!important;border-radius:12px!important;color:#fff!important;-webkit-backdrop-filter:blur(12px)!important;backdrop-filter:blur(12px)!important}
+#stick{left:calc(env(safe-area-inset-left,0px) + 22px)!important;bottom:calc(env(safe-area-inset-bottom,0px) + 22px)!important;width:130px!important;height:130px!important;border-radius:50%!important;background:rgba(255,255,255,.12)!important;border:2px solid rgba(255,255,255,.3)!important;box-shadow:none!important;display:flex!important;align-items:center!important;justify-content:center!important}
+#knob{position:static!important;width:60px!important;height:60px!important;border-radius:50%!important;background:rgba(255,255,255,.45)!important;border:0!important;transform:none}
+.ab{touch-action:none!important;position:fixed!important;pointer-events:auto!important;border-radius:50%!important;display:flex!important;align-items:center!important;justify-content:center!important;font-weight:800!important;color:#111!important;background:rgba(255,210,63,.85)!important;border:0!important;box-shadow:none!important;text-shadow:none!important;margin:0!important;padding:0!important}
+#bShot{right:calc(env(safe-area-inset-right,0px) + 24px)!important;bottom:calc(env(safe-area-inset-bottom,0px) + 40px)!important;width:96px!important;height:96px!important;font-size:18px!important}
+#bPow{right:calc(env(safe-area-inset-right,0px) + 132px)!important;bottom:calc(env(safe-area-inset-bottom,0px) + 30px)!important;width:64px!important;height:64px!important;font-size:13px!important;background:rgba(255,255,255,.6)!important;color:#111!important}
+.ab.p{transform:scale(.96)!important;filter:brightness(1.08)!important}
+@media(pointer:coarse) and (max-width:900px){
+ #gtop{padding:8px 10px!important;min-width:158px!important;max-width:52vw!important;font-size:12px!important;border-radius:14px!important}
+ #gtop>div:not(.mid){gap:2px 3px!important;padding:4px 1px!important}
+ #gtop .n,#gtop #sv0,#gtop #sv1{font-size:10px!important}
+ #gtop .s{font-size:clamp(22px,4vh,29px)!important}
+ #gtop .mid{min-width:25px!important;font-size:9px!important;padding:3px!important}
+}
 </style><script>{const D=Date;window.Date=class extends D{getHours(){return 12}getMinutes(){return 0}getSeconds(){return 0}}}</script></head><body>
 <div class="bar" id="top"></div><div class="bar" id="bot"></div><canvas id="c"></canvas>
 <div id="menu" class="scr on"><div class="title"><h1>ARENA <span>SPORTS</span></h1><p>BADMINTON · TENNIS · TABLE TENNIS · VOLLEYBALL</p></div>
@@ -329,7 +366,7 @@ const TAU=Math.PI*2,R=Math.random;
 const T=(w,h,f,rep)=>{const c=document.createElement('canvas');c.width=w;c.height=h;f(c.getContext('2d'));const t=new THREE.CanvasTexture(c);t.encoding=THREE.sRGBEncoding;t.anisotropy=8;if(rep)t.wrapS=t.wrapT=THREE.RepeatWrapping;return t};
 const __S=(function(){
 const R=Math.random,TAU=6.28319;
-const renderer=new THREE.WebGLRenderer({canvas:document.getElementById('c'),antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight);
+const renderer=new THREE.WebGLRenderer({canvas:document.getElementById('c'),antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2.5));renderer.setSize(innerWidth,innerHeight);
 renderer.outputEncoding=THREE.sRGBEncoding;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
 const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(50,innerWidth/innerHeight,.5,2500);cam.position.set(-9,9.5,20);
 const ctl=new THREE.OrbitControls(cam,renderer.domElement);ctl.target.set(0,4,0);ctl.enableDamping=true;ctl.maxPolarAngle=1.5;ctl.maxDistance=220;
