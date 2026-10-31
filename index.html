@@ -29,23 +29,23 @@ input{font:inherit;color:inherit;background:rgba(0,0,0,.35);border:1px solid var
 .code{font-size:clamp(28px,5vw,40px);font-weight:900;letter-spacing:.3em;color:var(--ac)}
 .lbl{font-size:12px;color:var(--dim);margin-bottom:6px}
 #wait{text-align:center;color:var(--ac2);font-weight:700;min-height:1.4em}
-/* hud */
+/* HUD — current Badminton Arena UI baseline (① 現行UI). PRO v7 styling is intentionally not used. */
 #hud{pointer-events:none;flex-direction:column}
-#gtop{align-self:center;margin-top:8px;display:flex;align-items:stretch;border-radius:16px;overflow:hidden;background:rgba(8,12,30,.78);border:1px solid var(--ln);backdrop-filter:blur(6px);pointer-events:none}
-#gtop div{padding:6px 16px;text-align:center}#gtop .n{font-size:11px;color:var(--dim)}#gtop .s{font-size:clamp(24px,5vh,36px);font-weight:900;font-variant-numeric:tabular-nums;min-width:2ch}#gtop .mid{background:rgba(255,255,255,.06);display:flex;align-items:center;font-size:12px;color:var(--dim)}
-#sub{align-self:center;margin-top:6px;font-size:12px;color:var(--dim);text-shadow:0 1px 4px #000}
-#msg{position:absolute;left:0;right:0;top:34%;text-align:center;font-size:clamp(24px,6vh,46px);font-weight:900;text-shadow:0 3px 14px rgba(0,0,0,.7)}#msg.win{color:var(--ac2)}#msg.lose{color:#ff6b6b}
-#bPause{position:absolute;right:max(12px,env(safe-area-inset-right));top:max(10px,env(safe-area-inset-top));pointer-events:auto;width:44px;height:44px;border-radius:14px;background:rgba(8,12,30,.7);border:1px solid var(--ln);font-size:18px}
+#gtop{align-self:center;margin-top:8px;display:flex;align-items:stretch;border-radius:10px;overflow:hidden;background:rgba(15,23,32,.88);border:1px solid #344352;pointer-events:none}
+#gtop div{padding:6px 16px;text-align:center}#gtop .n{font-size:11px;color:#aab7c4}#gtop .s{font-size:clamp(24px,5vh,36px);font-weight:800;font-variant-numeric:tabular-nums;min-width:2ch;color:#f2f6fa}#gtop .mid{background:rgba(255,210,63,.08);display:flex;align-items:center;font-size:12px;color:#ffd23f}
+#sub{align-self:center;margin-top:6px;font-size:12px;color:#c0cad4;text-shadow:0 1px 4px #000}
+#msg{position:absolute;left:0;right:0;top:34%;text-align:center;font-size:clamp(24px,6vh,46px);font-weight:800;text-shadow:0 3px 14px rgba(0,0,0,.7)}#msg.win{color:#ffd23f}#msg.lose{color:#f28b82}
+#bPause{position:absolute;right:max(12px,env(safe-area-inset-right));top:max(10px,env(safe-area-inset-top));pointer-events:auto;width:44px;height:44px;border-radius:10px;background:#18222e;border:1px solid #344352;font-size:18px;color:#f2f6fa}
 #ctl{display:none}.touch #ctl{display:block}
-#stick{position:absolute;left:max(24px,env(safe-area-inset-left));bottom:max(24px,env(safe-area-inset-bottom));width:min(34vw,170px);height:min(34vw,170px);border-radius:50%;background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.25);pointer-events:auto;touch-action:none;display:flex;align-items:center;justify-content:center}
-#knob{width:42%;height:42%;border-radius:50%;background:rgba(255,255,255,.45);border:2px solid rgba(255,255,255,.7)}
-.ab{position:absolute;border-radius:50%;pointer-events:auto;touch-action:none;font-weight:900;background:linear-gradient(135deg,var(--ac),#ff5a3c);box-shadow:0 6px 20px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,.5)}.ab.p{transform:scale(.92);filter:brightness(1.2)}
+#stick{position:absolute;left:max(24px,env(safe-area-inset-left));bottom:max(24px,env(safe-area-inset-bottom));width:min(34vw,170px);height:min(34vw,170px);border-radius:50%;background:rgba(15,23,32,.5);border:2px solid rgba(242,246,250,.3);pointer-events:auto;touch-action:none;display:flex;align-items:center;justify-content:center}
+#knob{width:42%;height:42%;border-radius:50%;background:rgba(242,246,250,.45);border:2px solid rgba(242,246,250,.7)}
+.ab{position:absolute;border-radius:50%;pointer-events:auto;touch-action:none;font-weight:800;background:#ffd23f;color:#111820;box-shadow:0 4px 12px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;border:1px solid rgba(242,246,250,.65)}.ab.p{transform:scale(.92);filter:brightness(1.08)}
 #bShot{right:max(28px,env(safe-area-inset-right));bottom:max(30px,env(safe-area-inset-bottom));width:min(24vw,118px);height:min(24vw,118px);font-size:18px}
-#bPow{right:calc(max(28px,env(safe-area-inset-right)) + min(24vw,118px) + 12px);bottom:max(30px,env(safe-area-inset-bottom));width:min(17vw,84px);height:min(17vw,84px);font-size:14px;background:linear-gradient(135deg,#2e6bd6,#2ec4b6)}
-#hint{position:absolute;left:0;right:0;bottom:10px;text-align:center;font-size:12px;color:var(--dim);text-shadow:0 1px 4px #000}.touch #hint{display:none}
-#over,#pause{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(5,8,20,.7);pointer-events:auto}#over.on,#pause.on{display:flex}
-#over .panel,#pause .panel{align-items:center;text-align:center;width:min(86vw,420px)}#ovT{font-size:36px;font-weight:900}#ovS{font-size:28px;color:var(--ac)}
-#rot{display:none;position:fixed;left:0;right:0;bottom:6px;text-align:center;font-size:11px;color:var(--dim);pointer-events:none}
+#bPow{right:calc(max(28px,env(safe-area-inset-right)) + min(24vw,118px) + 12px);bottom:max(30px,env(safe-area-inset-bottom));width:min(17vw,84px);height:min(17vw,84px);font-size:14px;background:#263747;color:#ffd23f}
+#hint{position:absolute;left:0;right:0;bottom:10px;text-align:center;font-size:12px;color:#c0cad4;text-shadow:0 1px 4px #000}.touch #hint{display:none}
+#over,#pause{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(5,9,13,.76);pointer-events:auto}#over.on,#pause.on{display:flex}
+#over .panel,#pause .panel{align-items:center;text-align:center;width:min(86vw,420px);background:#0f1720;border:1px solid #344352;border-radius:12px}#ovT{font-size:36px;font-weight:800}#ovS{font-size:28px;color:#ffd23f}
+#rot{display:none;position:fixed;left:0;right:0;bottom:6px;text-align:center;font-size:11px;color:#c0cad4;pointer-events:none}
 @media(orientation:portrait){#rot{display:block}.side{width:48vw;margin-right:3vw}}
 .bar{display:none}.fx{position:fixed;inset:0;z-index:5;display:none;overflow:hidden}.fx.on{display:block}#intro{pointer-events:auto}#outro{pointer-events:none}
 body.fxi #hud{visibility:hidden}
@@ -76,7 +76,7 @@ body.fxi #hud{visibility:hidden}
 
 
 
-/* BADMINTON ARENA UI COMPONENT LIBRARY — PRO v7 HUD adaptation.
+/* BADMINTON ARENA UI COMPONENT LIBRARY — current UI (① 現行UI) adaptation; PRO v7 excluded.
    Keep existing Sports Arena ids/event handlers; visual structure follows library HUD. */
 :root{--bg0:#060b13;--bg1:#0c1727;--bg2:#13233a;--gold:#b08a34;--gold2:#d9b86c;--gold3:#8a6d2f;--iv:#13263d;--lt:#fff;--mu:#5f7389;--hl:rgba(19,38,61,.16);--cr:#e8523a;--ok:#169a62;--ease:cubic-bezier(.2,.7,.2,1);--fd:"Barlow Condensed","Noto Sans JP",sans-serif;--fb:"Noto Sans JP","Barlow Condensed",system-ui,"Hiragino Sans","Yu Gothic",sans-serif}
 html,body{font-family:var(--fb);-webkit-font-smoothing:antialiased}
