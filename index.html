@@ -120,6 +120,50 @@ html,body{font-family:var(--fb);-webkit-font-smoothing:antialiased}
  #hint{font-size:10px;max-width:90vw;margin:auto}
 }
 @media(prefers-reduced-motion:reduce){#gtop,#msg{animation:none!important}}
+
+/* Main menu and navigation screens styled to match BADMINTON-ARENA current main.
+   Only presentation changes: existing IDs, controls, and game handlers remain intact. */
+#menu.scr.on{
+ display:flex;align-items:center;justify-content:center;gap:4vmin;
+ padding:calc(env(safe-area-inset-top,0px) + 24px) calc(env(safe-area-inset-right,0px) + 5vw) calc(env(safe-area-inset-bottom,0px) + 24px) calc(env(safe-area-inset-left,0px) + 5vw);
+ background:radial-gradient(ellipse at 30% 40%,rgba(10,20,50,.38),rgba(5,8,18,.9));
+}
+#menu .title{position:relative;inset:auto;flex:1 1 52%;min-width:0;pointer-events:none}
+#menu .title h1{font-family:"Barlow Condensed","Noto Sans JP",system-ui,sans-serif;font-size:clamp(54px,12vmin,112px);line-height:.9;font-weight:900;font-style:italic;letter-spacing:.02em;background:linear-gradient(180deg,#fff,#bfe6ff 55%,#4aa8ff);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:2px rgba(20,60,120,.55);filter:drop-shadow(0 5px 0 rgba(20,60,120,.35))}
+#menu .title h1 span{color:transparent}
+#menu .title p{margin-top:16px;color:#fff;text-shadow:0 2px 0 rgba(20,60,120,.5);font-size:clamp(11px,1.8vmin,15px);line-height:1.8;letter-spacing:.14em}
+#menu .side{flex:0 1 430px;width:auto;max-width:46%;margin:0;align-self:center;gap:2.4vmin}
+#menu button.big{display:flex;align-items:center;gap:16px;margin:0;padding:clamp(15px,2.3vmin,24px) clamp(18px,3vmin,32px);border-radius:28px;background:#fff;color:#16324f;border:0;box-shadow:0 8px 0 rgba(20,60,120,.3);backdrop-filter:none;transform:none;transition:transform .15s,background .15s}
+#menu button.big:hover,#menu button.big:active{transform:scale(1.03);background:#eaf5ff;color:#16324f}
+#menu .big .ic{display:flex;align-items:center;justify-content:center;flex:0 0 1.5em;width:1.5em;height:1.5em;border-radius:50%;background:#e8f4ff;font-size:clamp(27px,6vmin,48px)}
+#menu .big>span:last-child{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+#menu .big small{display:block;color:#52708e;font-size:clamp(11px,1.7vmin,14px);font-weight:700}
+#sport.scr,#fmt.scr,#friend.scr,#lobby.scr,#wait.scr{background:radial-gradient(ellipse at 30% 40%,rgba(10,20,50,.32),rgba(5,8,18,.88))}
+.scr:not(#menu){background-color:rgba(5,8,18,.68);backdrop-filter:blur(3px)}
+.scr .panel{background:rgba(18,29,48,.94);border:1px solid rgba(191,220,255,.22);border-radius:22px;box-shadow:0 18px 60px rgba(0,0,0,.42);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.scr .panel h2{font-family:"Barlow Condensed","Noto Sans JP",system-ui,sans-serif;letter-spacing:.02em}
+.scr .back{color:#a9c4df;font-weight:700}
+.scr .card{background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.045));border:1px solid rgba(255,255,255,.23);border-radius:18px;color:#f2f6fa}
+.scr .card:hover,.scr .card:focus-visible{border-color:#7bc5ff;background:rgba(80,150,220,.22)}
+.scr .btn,.scr .big:not(#menu .big){border-radius:14px}
+@media(max-width:700px){
+ #menu.scr.on{flex-direction:column;align-items:stretch;justify-content:center;gap:4vh;padding:calc(env(safe-area-inset-top,0px) + 18px) calc(env(safe-area-inset-right,0px) + 18px) calc(env(safe-area-inset-bottom,0px) + 18px) calc(env(safe-area-inset-left,0px) + 18px)}
+ #menu .title{flex:0 0 auto;width:100%;text-align:center}
+ #menu .title h1{font-size:clamp(48px,13vw,78px)}
+ #menu .title p{margin-top:10px;font-size:clamp(10px,2.8vw,13px);letter-spacing:.08em}
+ #menu .side{flex:0 0 auto;width:100%;max-width:none;gap:12px}
+ #menu button.big{padding:14px 18px;border-radius:22px}
+ #menu .big .ic{font-size:32px}
+}
+@media(max-height:520px) and (orientation:landscape){
+ #menu.scr.on{padding-top:12px;padding-bottom:12px;gap:3vw}
+ #menu .title h1{font-size:clamp(42px,11vh,72px)}
+ #menu .title p{margin-top:8px;font-size:10px}
+ #menu .side{gap:10px}
+ #menu button.big{padding:10px 16px}
+ #menu .big .ic{font-size:28px}
+}
+
 </style><script>{const D=Date;window.Date=class extends D{getHours(){return 12}getMinutes(){return 0}getSeconds(){return 0}}}</script></head><body>
 <div class="bar" id="top"></div><div class="bar" id="bot"></div><canvas id="c"></canvas>
 <div id="menu" class="scr on"><div class="title"><h1>ARENA <span>SPORTS</span></h1><p>BADMINTON · TENNIS · TABLE TENNIS · VOLLEYBALL</p></div>
